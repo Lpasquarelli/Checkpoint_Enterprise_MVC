@@ -1,0 +1,33 @@
+﻿@model List<Usuario>
+
+<p>
+    <h1>Listagem de Usuarios</h1>
+</p>
+
+<table class="table">
+    <tr>
+        <td>ID</td>
+        <td>Nome</td>
+        <td>Sobrenome</td>
+        <td>Idade</td>
+        <td>CPF</td>
+        <td>Data De Nascimento</td>
+        <td>Editar</td>
+        <td>Apagar</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.idUsuario</td>
+    <td>@item.nome</td>
+    <td>@item.sobrenome</td>
+    <td>@item.idade</td>
+    <td>@item.cpf</td>
+    <td>@item.dtNascimento</td>
+    <td> <a asp-controller="Home" asp-action="Editar" asp-route-id="@item.idUsuario">✏</a></td>
+    <td><a asp-controller="Home" asp-action="Apagar" asp-route-id="@item.idUsuario">🗑</a></td>
+</tr>
+    }
+</table>
+<a asp-controller="Home" asp-action="index" class="btn btn-outline-primary" > Voltar</a>
+

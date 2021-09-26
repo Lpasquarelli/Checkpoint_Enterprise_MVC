@@ -1,5 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = ViewBag.Title;
 }
+
+<div style="margin-top: 1rem" class="alert alert-info">
+    <h3>Bem Vindo a plataforma de Usuários da Highline Solution</h3>
+    <p>
+        Aqui voce pode realizar uma Inclusao, Edição, Leitura e Exclusao de qualquer usuário
+    </p>
+    <a class="btn btn-danger" asp-controller="home" asp-action="cadastrar">Cadastro de Usuarios</a>
+    <a class="btn btn-success" asp-controller="home" asp-action="listar">Lista de Usuarios</a>
+
+</div>
 
 

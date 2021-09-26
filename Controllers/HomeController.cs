@@ -20,15 +20,73 @@ namespace CheckpointDigital.Controllers
             _service = service;
         }
 
-        public ActionResult<IEnumerable<Usuario>> GetUsuarios()
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Cadastrar()
+        {
+            return View();
+        }
+        public ActionResult Listar()
+        {
+            var retorno = GetAll();
+            return View(retorno);
+        }
+        public ActionResult Editar(int id)
+        {
+            var user = _service.GetByID(id);
+
+            if (user == null)
+                return null;
+
+
+            return View(user);
+        }
+
+        public ActionResult Update(Usuario usuario)
+        {
+            var user = _service.Update(usuario);
+
+            if (user == null)
+                return null;
+
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public ActionResult<Usuario> Cadastrar(Usuario usuario)
+        {
+            ViewData["nome"] = usuario.nome;
+            ViewBag.data = usuario.dtNascimento;
+            TempData["msg"] = "Usuario Registrado!";
+
+            var retorno = _service.Create(usuario);
+            return View(retorno);
+        }
+
+        [HttpGet]
+        public IEnumerable<Usuario> GetAll()
         {
             var retorno = _service.GetAll();
 
             if (retorno == null)
-                return NotFound();
+                return null;
 
-            return Ok(retorno);
+
+            return retorno;
         }
+
+        [HttpGet]
+        public IActionResult Apagar(int id)
+        {
+            _service.Delete(id);
+
+            return RedirectToAction("Listar");
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

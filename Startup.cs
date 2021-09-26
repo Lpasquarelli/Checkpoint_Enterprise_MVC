@@ -29,9 +29,10 @@ namespace CheckpointDigital
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddMvc();
+             
 
             services.AddTransient<IUsuarioServices, UsuarioServices>();
 

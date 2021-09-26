@@ -22,6 +22,7 @@ namespace CheckpointDigital.Models
         [Column("NR_CPF")]
         public string cpf { get; set; }
         [Column("DT_NASCIMENTO")]
+        [DataType(DataType.Date)]
         public DateTime dtNascimento { get; set; }
     }
 }
